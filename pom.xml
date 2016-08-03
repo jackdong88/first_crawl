@@ -9,6 +9,19 @@
 	<description>go to Mp4Ba Crawler film</description>
 
 	<url>http://maven.apache.org</url>
+ 
+	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<repositories>
+		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+		<repository>
+			<id>mynexus</id>
+			<name>mymaven2</name> 
+			<url>http://mvnrepository.com/</url> 
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -131,15 +144,24 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring-data-jpa.version}</version>
 		</dependency>
+		<!-- spring end -->
 
+		<!-- Serlvet  -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+	
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>1.6.11</version>
-		</dependency>
+		</dependency> 
 
 		<dependency>
-			<groupId>org.aspectj</groupId>
+			<groupId>org.aspectj</groupId> 
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.6.10</version>
 		</dependency>
@@ -150,12 +172,35 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- 微信 start -->
+		<!-- 
+		<dependency>
+		  <groupId>org.apache.httpcomponents</groupId>
+		  <artifactId>httpcore</artifactId>
+		  <version>4.4.3</version>
+		</dependency>
+		 -->
+		<dependency>
+		  <groupId>org.apache.httpcomponents</groupId>
+		  <artifactId>httpclient</artifactId>
+		  <version>4.0.2</version>
+		</dependency>
+		
 		<dependency>    
 		    <groupId>net.sf.json-lib</groupId>   
 		    <artifactId>json-lib</artifactId>    
 		    <version>2.4</version>   
 		    <classifier>jdk15</classifier>  
 		</dependency>
+		
+		<dependency>
+		    <groupId>xom</groupId>
+		    <artifactId>xom</artifactId>
+		    <version>1.2.5</version>
+		</dependency>
+		
+		<!-- 微信 end -->
+
 
 
 	</dependencies>
