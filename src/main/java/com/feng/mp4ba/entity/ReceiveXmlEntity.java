@@ -17,6 +17,7 @@ public class ReceiveXmlEntity {
     private String Title="";  
     private String Description="";  
     private String Url="";  
+    private String URL="";
     private String Location_X="";  
     private String Location_Y="";  
     private String Scale="";  
@@ -162,5 +163,11 @@ public class ReceiveXmlEntity {
     }  
     public void setMsgType(String msgType) {  
         MsgType = msgType;  
-    }  
+    }
+	public String getURL() {
+		return URL;
+	}
+	public void setURL(String uRL) {
+		URL = uRL;
+	}  
 }

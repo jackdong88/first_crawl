@@ -3,6 +3,7 @@ package com.feng.mp4ba.controller;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -27,15 +28,14 @@ public class WeChatController {
 
 	Logger log = Logger.getLogger(this.getClass());
 	
-	
-	@RequestMapping(value="authentication",method=RequestMethod.POST)
+	@RequestMapping(value="authentication",method=RequestMethod.POST, produces = {"text/xml;charset=UTF-8"})
 	@ResponseBody
 	public String test(HttpServletRequest request, HttpServletResponse response){
 		String returnXml = "";
 		String content = "no support";
 		try{
 			
-			request.setCharacterEncoding("utf-8"); 
+			request.setCharacterEncoding("UTF-8"); 
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/xml;charset=UTF-8");
 			log.info(" receive msg");
@@ -63,7 +63,7 @@ public class WeChatController {
 	        	
 	        	receive_str = receive_str.trim();
 	        	if("5152".equals(receive_str)){
-	        		content = "jd";
+	        		content = "jd 号码";
 	        	}else if("2224".equals(receive_str)){
 	        		content = "jc haoma：15013442224";
 	        	}else if("4820".equals(receive_str)){
@@ -73,7 +73,10 @@ public class WeChatController {
 	        	}
 	        }
 	       
+//	        content = URLEncoder.encode(content,"UTF-8");
+	        
 	        returnXml = formatXmlAnswer(to, from, content);
+	        log.info("returnXml "+returnXml);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
