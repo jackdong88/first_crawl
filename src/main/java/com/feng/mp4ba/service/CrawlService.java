@@ -40,11 +40,12 @@ public class CrawlService extends BaseService<Film> {
 					filmDao.save(film);
 				}else{
 					log.info(" 数据库中已有记录 hashcode "+film.getHashCode());
-					if("f50178806e52d769e68e84a5944501e28606c2c5".equals(film.getHashCode())){
+//					if("f50178806e52d769e68e84a5944501e28606c2c5".equals(film.getHashCode())){
 						log.info("更新ID为："+isExist.getId() + " 的 onshowdate字段 ");
-						isExist.setOnShowDate(film.getOnShowDate());
+//						isExist.setOnShowDate(film.getOnShowDate());
+						isExist.setImgUrl(film.getImgUrl());
 						this.update(isExist);
-					}
+//					}
 				}
 			}
 		}

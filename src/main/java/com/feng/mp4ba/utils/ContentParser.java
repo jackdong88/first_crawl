@@ -148,7 +148,9 @@ public class ContentParser {
 				
 				film.setOnShowDate(onShowDateStr);
 				
-				
+				Element imgEle = film_intro.getElementsByTag("img").get(0);
+				String img_url = imgEle.attr("src");
+				film.setImgUrl(img_url);
 				
 				filmList.add(film);
 				/*DBUtil db = new DBUtil();

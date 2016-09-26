@@ -39,6 +39,7 @@ public class Film extends BaseEntity {
 	
 	private String downloadCount;
 	
+	private String imgUrl;
 	
 	
 	private  Category cat;
@@ -146,6 +147,15 @@ public class Film extends BaseEntity {
 
 	public void setCat(Category cat) {
 		this.cat = cat;
+	}
+
+	@Column(name="img_url")
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 	
