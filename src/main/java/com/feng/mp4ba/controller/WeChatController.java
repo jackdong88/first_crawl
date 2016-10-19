@@ -28,9 +28,23 @@ public class WeChatController {
 
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@RequestMapping(value="authentication",method=RequestMethod.POST, produces = {"text/xml;charset=UTF-8"})
+//	@RequestMapping(value="authentication",method=RequestMethod.POST, produces = {"text/xml;charset=UTF-8"})
+	@RequestMapping(value="authentication")
 	@ResponseBody
 	public String test(HttpServletRequest request, HttpServletResponse response){
+		
+		String methodName = request.getMethod();
+		log.info(" method name = "+methodName);
+		
+		if("GET".equals(methodName)){
+			// 
+			log.info(" 请求方式为 GET 方法执行   为认证模式");
+			String returnStr = weixin_renzheng(request);
+			return returnStr;
+		}else if("POST".equals(methodName)){
+			log.info(" 请求方式为 POST 方法执行  用于接受用户消息");
+		}
+		
 		String returnXml = "";
 		String content = "no support";
 		try{
@@ -49,7 +63,7 @@ public class WeChatController {
 	        while ((s = br.readLine()) != null) {  
 	            sb.append(s);  
 	        }  
-	        String xml = sb.toString(); //次即为接收到微信端发送过来的xml数据  
+	        String xml = sb.toString(); //此即为接收到微信端发送过来的xml数据  
 	        log.info(" xml "+xml);
 	        
 	        
@@ -99,13 +113,24 @@ public class WeChatController {
         return sb.toString();  
     }  
 	
-	
 	/**
-	 * 微信认证
+	 * 快捷进行微信认证
+	 * 只需要原样返回echostr参数的值
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="authentication_weixin")
+	private String weixin_renzheng(HttpServletRequest request){
+		String echostr = request.getParameter("echostr");
+		return echostr;
+	}
+	
+	/**
+	 * 微信认证
+	 * GET请求方式
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="authentication_weixin", method=RequestMethod.GET)
 	@ResponseBody
 	private String authentication(HttpServletRequest request){
 		log.info(" "+request.getRemoteHost());
@@ -125,7 +150,7 @@ public class WeChatController {
 		String token = signature;
 		String returnStr = parse(token, timestamp, nonce);
 		log.info("比对结果:"+returnStr);
-		return returnStr;
+		return echostr;
 	}
 	
 	

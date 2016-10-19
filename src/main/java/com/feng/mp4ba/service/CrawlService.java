@@ -24,7 +24,9 @@ public class CrawlService extends BaseService<Film> {
 
 	@Transactional(readOnly=false)
 	public void crawlData(){
-		String url = "http://www.mp4ba.com/index.php?sort_id=2";
+		String url = "http://www.mp4ba.com/index.php?sort_id=2&page=2";
+		String url_first = "http://www.mp4ba.com/index.php?sort_id=2";
+		
 		HtmlUtil starter = new HtmlUtil();
 		FetchedPage result = starter.getContentFromUrl(url);
 		
@@ -48,6 +50,7 @@ public class CrawlService extends BaseService<Film> {
 //					}
 				}
 			}
+			log.info(" 爬虫完毕");
 		}
 		
 	}
@@ -56,5 +59,6 @@ public class CrawlService extends BaseService<Film> {
 	public Film findByHashCode(String hashCode){
 		return this.filmDao.findByHashCode(hashCode);
 	}
+	
 	
 }

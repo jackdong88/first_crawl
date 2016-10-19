@@ -43,6 +43,7 @@ public class ContentParser {
 		FilmCategory category = new FilmCategory();
 //		category.setTypeName("港台电影");
 		for (int i = 0; i < trs.size(); i++) {
+			log.info("---one start "+i+" ----------------------------------------------------");
 			Element elm = trs.get(i);
 		/*}
 		for (Element elm : trs) {*/
@@ -161,6 +162,7 @@ public class ContentParser {
 				}*/
 			}
 			
+			log.info("---one end "+i+" ----------------------------------------------------");
 		}
 		
 		return filmList;
