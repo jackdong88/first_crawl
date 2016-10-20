@@ -14,6 +14,6 @@ public class IndexController {
 	public String index(HttpServletRequest request, Model model){
 		model.addAttribute("userName", "方中信");
 		
-		return "/Admin/index";
+		return "index";
 	} 
 }
